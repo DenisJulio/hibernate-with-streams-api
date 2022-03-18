@@ -7,7 +7,6 @@ import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,50 +19,46 @@ public class AppInfrastructure {
     private static final String[] SERVER_OPTIONS = {"-tcpPort", "9090"};
     private static final String PERSISTENCE_UNIT_NAME = "MyPU";
     private static final Module[] INJECTOR_MODULES = {new JpaPersistModule(PERSISTENCE_UNIT_NAME), new AppModule()};
-    private static AppInfrastructure INSTANCE;
 
-    private final Injector injector;
-    private final Server server;
+    private static InfrastructureObjects infrastructureObjects;
+
+    /**
+     * Retrieves the Guice {@link Injector}
+     *
+     * @return the Injector associated with the application
+     * @throws UnsupportedOperationException when invoked before {@code plug()}
+     */
+    public static Injector injector() {
+        if (infrastructureObjects == null) {
+            throw new UnsupportedOperationException("The plug method should be called before invoking injector()");
+        }
+        return infrastructureObjects.getInjector();
+    }
 
     /**
      * Method responsible for bootstrapping the application infrastructure
      * when invoked.
      */
     public static void plug() {
-        initInstance();
-        if (!INSTANCE.server.isRunning(false)) {
+        setInfrastructureObjects();
+        if (! infrastructureObjects.getServer().isRunning(true)) {
             try {
-                INSTANCE.server.start();
-                INSTANCE.injector.getInstance(PersistService.class).start();
+                infrastructureObjects.getServer().start();
+                infrastructureObjects.getInjector().getInstance(PersistService.class).start();
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
-            keepApplicationRunning();
+            startBackgroundThread();
         }
-        var consoleConnectionURL = "jdbc:h2:" + INSTANCE.server.getURL() + "/mem:test";
-        logger.info("Connect to H2 console: {}", consoleConnectionURL);
+        var h2ConsoleConnectionURL = "jdbc:h2:" + infrastructureObjects.getServer().getURL() + "/mem:test";
+        logger.info("Connect to H2 console: {}", h2ConsoleConnectionURL);
     }
 
-    /**
-     * Retrieves the Guice {@link Injector}
-     *
-     * @return the Injector associated with the application
-     */
-    public static Injector injector() {
-        return INSTANCE.injector;
-    }
-
-    private static void initInstance() {
-        if (INSTANCE == null) {
-            Server server = null;
-            try {
-                server = Server.createTcpServer(SERVER_OPTIONS);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            INSTANCE = new AppInfrastructure(
+    private static void setInfrastructureObjects() {
+        if (infrastructureObjects == null) {
+            infrastructureObjects = new InfrastructureObjects(
                     Guice.createInjector(INJECTOR_MODULES),
-                    server
+                    SERVER_OPTIONS
             );
         }
     }
@@ -72,7 +67,7 @@ public class AppInfrastructure {
      * This method will keep the application running for debugging
      * purposes with H2 console.
      */
-    private static void keepApplicationRunning() {
+    private static void startBackgroundThread() {
         new Thread(() -> {
             while (true) {
             }
