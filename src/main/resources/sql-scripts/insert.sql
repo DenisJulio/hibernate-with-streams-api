@@ -1,0 +1,1 @@
+INSERT INTO person VALUES(1, 'Denis Julio', '1992-05-28');

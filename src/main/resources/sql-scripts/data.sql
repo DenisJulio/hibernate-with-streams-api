@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS person;
+
+CREATE TABLE person(
+	id INTEGER PRIMARY KEY,
+	name VARCHAR(64),
+	birthday DATE
+);

@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e">
+    <diagram id="77z3TIO1zQmEUQ_cNQWP" name="Page-1">
+        <mxGraphModel dx="834" dy="604" grid="1" gridSize="10" guides="1" tooltips="0" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-1" value="" style="shape=datastore;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="463" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-5" value="Entity" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="323" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-6" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="289.5" y="403" as="sourcePoint"/>
+                        <mxPoint x="289.5" y="443" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" parent="1" source="b0RRfVdK-O6cHVX53qbO-7" target="b0RRfVdK-O6cHVX53qbO-10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-7" value="Java App" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="463" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-8" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="330" y="492.5" as="sourcePoint"/>
+                        <mxPoint x="470" y="492.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="390" y="492.5"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-9" value="Postgres" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="533" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="b0RRfVdK-O6cHVX53qbO-10" value="The Java App will comunicate with the database and make aggregate operations on data using Java Streams api" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;rounded=0;shadow=0;glass=0;sketch=0;strokeColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="298" width="210" height="110" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
