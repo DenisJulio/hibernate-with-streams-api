@@ -2,7 +2,6 @@ package com.denisjulio;
 
 import com.denisjulio.entities.Person;
 import com.denisjulio.infrastructure.AppInfrastructure;
-import com.denisjulio.infrastructure.Repository;
 
 import java.time.LocalDate;
 

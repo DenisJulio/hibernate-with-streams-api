@@ -5,14 +5,11 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AppInfrastructure {
 
     private static final Logger logger = LoggerFactory.getLogger(AppInfrastructure.class);

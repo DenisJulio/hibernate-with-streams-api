@@ -1,4 +1,4 @@
-package com.denisjulio.infrastructure;
+package com.denisjulio;
 
 import com.denisjulio.entities.Person;
 import com.google.inject.Inject;
